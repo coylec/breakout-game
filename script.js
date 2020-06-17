@@ -57,10 +57,19 @@ function draw() {
     drawBall();
     drawPaddle();
 
-    if(y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+    if (y + dy < ballRadius) {
         dy = -dy;
     }
-    if(x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+    else if (y + dy > canvas.height - ballRadius) {
+        if (x > paddleX && x < paddleX + paddleWidth) {
+            dy = -dy;
+        }
+        else {
+            alert("Game Over");
+            document.location.reload();
+        }
+    }
+    if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
 
